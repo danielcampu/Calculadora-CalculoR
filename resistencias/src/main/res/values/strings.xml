@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Resistencias</string>
+    <string name="calcular">Calcular</string>
+    <string name="valor">Valor</string>
+
+
+    <string-array name="colores_array">
+        <item>Negro</item>
+        <item>Cafe</item>
+        <item>Rojo</item>
+        <item>Naranja</item>
+        <item>Amarillo</item>
+        <item>Verde</item>
+        <item>Azul</item>
+        <item>Violeta</item>
+        <item>Gris</item>
+        <item>Blanco</item>
+    </string-array>
+
+
+    <string-array name="tolerancia_array">
+        <item>Rojo</item>
+        <item>Dorado</item>
+        <item>Gris</item>
+    </string-array>
+
+</resources>
