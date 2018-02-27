@@ -2,6 +2,8 @@
     <string name="app_name">Resistencias</string>
     <string name="calcular">Calcular</string>
     <string name="valor">Valor</string>
+    <string name="tolerancia">Tolerancia</string>
+    <string name="colores">Colores</string>
 
 
     <string-array name="colores_array">
