@@ -11,9 +11,10 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     private Spinner sCifra1, sCifra2, sMultiplicador, sTolerancia;
-    String cifra1, cifra2, multiplicador, tolerancia, valorfinal, c1, c2;
+    String cifra1, cifra2, multiplicador, tolerancia, valorfinal, c1, c2, tolera;
     TextView tShowResult;
     float tole;
+    int unidades = 0, unidades1=0;
 
 
     @Override
@@ -109,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
     public void onButtonClicked(View view) {
 
         String c1c2;
-        int valorfin = 0;
+        float valorfin = 0;
 
         switch (cifra1){
 
@@ -207,56 +208,55 @@ public class MainActivity extends AppCompatActivity {
 
         switch (multiplicador){
             case "Negro":
-                valorfin = Integer.valueOf(c1c2) * 1;
-                valorfinal = String.valueOf(valorfin);
+                valorfin = Float.valueOf(c1c2) * 1;
+                //valorfinal = String.valueOf(valorfin);
                 break;
 
             case "Cafe":
-                valorfin = Integer.valueOf(c1c2) * 10;
-                valorfinal = String.valueOf(valorfin);
+                valorfin = Float.valueOf(c1c2) * 10;
+                //valorfinal = String.valueOf(valorfin);
                 break;
 
             case "Rojo":
-                valorfin = Integer.valueOf(c1c2) * 100;
-                valorfinal = String.valueOf(valorfin);
+                valorfin = Float.valueOf(c1c2) * 100;
+                //valorfinal = String.valueOf(valorfin);
                 break;
 
             case "Naranja":
-                valorfin = Integer.valueOf(c1c2) * 1000;
-                valorfinal = String.valueOf(valorfin);
+                valorfin = Float.valueOf(c1c2) * 1000;
+                //valorfinal = String.valueOf(valorfin);
                 break;
 
             case "Amarillo":
-                valorfin = Integer.valueOf(c1c2) * 10000;
-                valorfinal = String.valueOf(valorfin);
+                valorfin = Float.valueOf(c1c2) * 10000;
+                //valorfinal = String.valueOf(valorfin);
                 break;
 
             case "Verde":
-                valorfin = Integer.valueOf(c1c2) * 100000;
-                valorfinal = String.valueOf(valorfin);
+                valorfin = Float.valueOf(c1c2) * 100000;
+                //valorfinal = String.valueOf(valorfin);
                 break;
 
             case "Azul":
-                valorfin = Integer.valueOf(c1c2) * 1000000;
-                valorfinal = String.valueOf(valorfin);
+                valorfin = Float.valueOf(c1c2) * 1000000;
+                //valorfinal = String.valueOf(valorfin);
                 break;
 
             case "Violeta":
-                valorfin = Integer.valueOf(c1c2) * 10000000;
-                valorfinal = String.valueOf(valorfin);
+                valorfin = Float.valueOf(c1c2) * 10000000;
+                //valorfinal = String.valueOf(valorfin);
                 break;
 
             case "Gris":
-                valorfin = Integer.valueOf(c1c2) * 100000000;
-                valorfinal = String.valueOf(valorfin);
+                valorfin = Float.valueOf(c1c2) * 100000000;
+                //valorfinal = String.valueOf(valorfin);
                 break;
 
             case "Blanco":
-                valorfin = Integer.valueOf(c1c2) * 1000000000;
-                valorfinal = String.valueOf(valorfin);
+                valorfin = Float.valueOf(c1c2) * 1000000000;
+                //valorfinal = String.valueOf(valorfin);
                 break;
         }
-
 
         switch (tolerancia){
             case "Rojo":
@@ -274,7 +274,41 @@ public class MainActivity extends AppCompatActivity {
 
         tole =  tole * (float) valorfin;
 
-        valorfinal = valorfinal + " Tolerancia de +- " + Float.toString(tole);
+
+        if(tole <= 999){
+            unidades1 = 0;
+            tolera = Float.toString(tole);
+        }else if(tole > 999 && tole <= 999999){
+            unidades1 = 1;
+            tole = tole/1000;
+            tolera = Float.toString(tole) + "K";
+        }else if(valorfin > 999999){
+            unidades1 = 2;
+            tole = tole/1000000;
+            tolera = Float.toString(tole) + "M";
+        }
+
+
+        if(valorfin <= 999){
+            unidades = 0;
+        }else if(valorfin > 999 && valorfin <= 999999){
+            unidades = 1;
+            valorfin = valorfin/1000;
+        }else if(valorfin > 999999){
+            unidades = 2;
+            valorfin = valorfin/1000000;
+        }
+
+        valorfinal = String.valueOf(valorfin);
+
+        if(unidades == 0){
+            valorfinal = valorfinal + " Tolerancia de +- " + tolera;
+        }else if(unidades == 1){
+            valorfinal = valorfinal + "K" + " Tolerancia de +- " + tolera;
+        }else if(unidades == 2){
+            valorfinal = valorfinal + "M" + " Tolerancia de +- " + tolera;
+        }
+
 
         tShowResult.setText(valorfinal);
 
